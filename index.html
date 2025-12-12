@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Drawing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Hand Gesture Drawing Canvas</h1>
+        
+        <div class="controls">
+            <button id="clearBtn" class="btn">Clear Canvas</button>
+            <button id="toggleCamera" class="btn">Toggle Camera</button>
+            <div class="brush-controls">
+                <label for="brushSize">Brush Size: <span id="brushSizeValue">10</span>px</label>
+                <input type="range" id="brushSize" min="1" max="50" value="10">
+                
+                <label for="colorPicker">Color:</label>
+                <input type="color" id="colorPicker" value="#ff0000">
+            </div>
+        </div>
+        
+        <div class="mode-display">
+            Current Mode: <span id="currentMode" class="mode drawing">Drawing</span>
+        </div>
+        
+        <div class="content">
+            <div class="camera-container">
+                <div class="video-wrapper">
+                    <video id="input_video" class="video"></video>
+                    <canvas id="hand_canvas" class="canvas"></canvas>
+                </div>
+                <div class="instructions">
+                    <h3>📝 Gesture Instructions:</h3>
+                    <ul>
+                        <li><strong>✌️ Peace Sign (Index + Middle up):</strong> Draw Mode</li>
+                        <li><strong>✊ Fist:</strong> Erase Mode</li>
+                        <li><strong>👆 Pointing:</strong> Draw Single Point</li>
+                        <li><strong>👍 Thumbs Up:</strong> Clear Canvas</li>
+                        <li><strong>✋ Open Palm:</strong> Stop Drawing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="drawing-container">
+                <canvas id="drawing_canvas" class="drawing-canvas"></canvas>
+                <div class="drawing-instructions">
+                    <h3>🎨 Drawing Canvas</h3>
+                    <p>Use hand gestures to draw and erase!</p>
+                    <div class="gesture-preview">
+                        <div class="gesture">
+                            <span>✌️</span>
+                            <p>Draw</p>
+                        </div>
+                        <div class="gesture">
+                            <span>✊</span>
+                            <p>Erase</p>
+                        </div>
+                        <div class="gesture">
+                            <span>👍</span>
+                            <p>Clear</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status">
+            <p id="statusText">Loading hand tracking model...</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
